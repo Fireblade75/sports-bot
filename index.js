@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const bodyParser = require('body-parser')
 const { Card, Suggestion, WebhookClient } = require('dialogflow-fulfillment')
 require("dotenv").config()
 
