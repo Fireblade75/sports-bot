@@ -39,9 +39,14 @@ function fallback(agent) {
 
 function startOrder(agent) {
     const clothing = agent.parameters['Clothing'].toLowerCase()
-    const brands = _.uniq(ClothingDB[clothing].map((item) => item.brand)).join(", ")
-    agent.add(`We hebben ${clothing} van de volgende merken:`)
-    agent.add(brands)
+    const itemList = ClothingDB[clothing]
+    if(itemList) {
+        const brands = _.uniq(itemList.map((item) => item.brand)).join(", ")
+        agent.add(`We hebben ${clothing} van de volgende merken:`)
+        agent.add(brands)
+    } else {
+        agent.add(`We verkopen helaas geen ${clothing}`)
+    }
 }
 
 server.listen(port, () => {
