@@ -7,7 +7,7 @@ const server = express()
 const port = process.env.PORT | 3000
 process.env.DEBUG = 'dialogflow:debug'
 
-app.use(bodyParser.json())
+server.use(bodyParser.json())
 
 server.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
