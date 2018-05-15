@@ -1,5 +1,5 @@
 module.exports = {
-    "Shoenen": [
+    "shoenen": [
         {
             id: 1101,
             brand: "New Star",
@@ -57,7 +57,7 @@ module.exports = {
             style: "Sport"
         }
     ],
-    "Shirts": [
+    "shirts": [
         {
             id: 2106,
             brand: "Agile Deer",
@@ -94,7 +94,7 @@ module.exports = {
             style: "Casual"
         }
     ],
-    "Shorts": [
+    "shorts": [
         {
             id: 3111,
             brand: "City Light",
@@ -124,7 +124,7 @@ module.exports = {
             style: "Sport"
         }
     ],
-    "Caps": [
+    "caps": [
         {
             id: 3115,
             brand: "City Light",
@@ -133,7 +133,7 @@ module.exports = {
             style: "Casual"
         }
     ],
-    "Hoodies": [
+    "hoodies": [
         {
             id: 4106,
             brand: "Agile Deer",
