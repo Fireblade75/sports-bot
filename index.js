@@ -7,14 +7,16 @@ const server = express()
 const port = process.env.PORT | 3000
 process.env.DEBUG = 'dialogflow:debug'
 
+app.use(bodyParser.json())
+
 server.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
 })
 
 server.post('/bot', (req, res) => {
     const agent = new WebhookClient({req, res})
-    console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers))
-    console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
+    console.log('Dialogflow Request headers: ' + JSON.stringify(req.headers))
+    console.log('Dialogflow Request body: ' + JSON.stringify(req.body))
 
     let intentMap = new Map()
     intentMap.set('Default Welcome Intent', welcome);
