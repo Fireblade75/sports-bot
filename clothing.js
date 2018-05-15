@@ -1,4 +1,4 @@
-export default {
+module.exports = {
     "Shoenen": [
         {
             id: 1101,
