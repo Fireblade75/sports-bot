@@ -1,5 +1,6 @@
 const express = require('express')
 const { Card, Suggestion, WebhookClient } = require('dialogflow-fulfillment')
+require("dotenv").config()
 
 const server = express()
 const port = process.env.PORT | 3000
