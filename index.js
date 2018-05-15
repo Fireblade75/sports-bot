@@ -14,24 +14,29 @@ server.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/index.html'));
 })
 
-server.post('/bot', (req, res) => {
-    const agent = new WebhookClient({request: req, response: res})
-    console.log('Dialogflow Request headers: ' + JSON.stringify(req.headers))
-    console.log('Dialogflow Request body: ' + JSON.stringify(req.body))
+server.post('/bot', (request, response) => {
+    const agent = new WebhookClient({request, response})
+    console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers))
+    console.log('Dialogflow Request body: ' + JSON.stringify(request.body))
 
     let intentMap = new Map()
-    intentMap.set('Default Welcome Intent', welcome);
-    intentMap.set('Default Fallback Intent', fallback);
+    intentMap.set('Default Welcome Intent', welcome)
+    intentMap.set('Default Fallback Intent', fallback)
+    intentMap.set('Start Order', startOrder)
     agent.handleRequest(intentMap)
 })
 
 function welcome(agent) {
-    agent.add(`Welcome to my agent!`);
+    agent.add(`Welcome to my agent!`)
 }
 
 function fallback(agent) {
-    agent.add(`I didn't understand`);
-    agent.add(`I'm sorry, can you try again?`);
+    agent.add(`I didn't understand`)
+    agent.add(`I'm sorry, can you try again?`)
+}
+
+function startOrder(agent) {
+    agent.add('-_-')
 }
 
 server.listen(port, () => {
