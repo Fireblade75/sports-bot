@@ -2,6 +2,8 @@ const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const { Card, Suggestion, WebhookClient } = require('dialogflow-fulfillment')
+const ClothingDB = require("./clothing")
+const _ = require("underscore")
 require("dotenv").config()
 
 const server = express()
@@ -27,16 +29,19 @@ server.post('/bot', (request, response) => {
 })
 
 function welcome(agent) {
-    agent.add(`Welcome to my agent!`)
+    agent.add(`Welkom bij de Sports Bot!`)
 }
 
 function fallback(agent) {
-    agent.add(`I didn't understand`)
+    agent.add(`Sorry, ik begrijp het niet`)
     agent.add(`I'm sorry, can you try again?`)
 }
 
 function startOrder(agent) {
-    agent.add('-_-')
+    const clothing = agent.parameters['Clothing'].toLowerCase()
+    const brands = _.uniq(ClothingDB[clothing].map((item) => item.brand)).join(", ")
+    agent.add(`We hebben ${clothing} van de volgende merken:`)
+    agent.add(brands)
 }
 
 server.listen(port, () => {
