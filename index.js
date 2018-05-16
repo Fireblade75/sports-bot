@@ -71,9 +71,9 @@ function orderStyle(agent) {
     const context = agent.getContext("order")
     const clothing = context.parameters.clothing
     if(clothing) {
-        const brands = ClothingDB[clothing]
+        const brands = _.uniq(ClothingDB[clothing]
             .filter(item => item.style.toLowerCase() === style)
-            .map(item => item.brand)
+            .map(item => item.brand))
             .join(", ")
 
         agent.add(`Wij verkopen ${style} ${clothing} van de volgende merken: ${brands}`)
