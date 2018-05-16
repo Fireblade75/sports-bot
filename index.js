@@ -72,7 +72,7 @@ function orderStyle(agent) {
     const clothing = context.parameters.clothing
     if(clothing) {
         const brands = ClothingDB[clothing]
-            .filter(item => item.style === style)
+            .filter(item => item.style.toLowerCase() === style)
             .map(item => item.brand)
             .join(", ")
 
