@@ -42,11 +42,13 @@ function startOrder(agent) {
     const clothing = agent.parameters['Clothing'].toLowerCase()
     const itemList = ClothingDB[clothing]
     if(itemList) {
-        const brands = _.uniq(itemList.map((item) => item.brand)).join(", ")
-        agent.add(`We hebben ${clothing} van de volgende merken: ${brands}`)
+        const styles = _.uniq(itemList.map((item) => item.style)).join(", ")
+        agent.add(`We hebben ${clothing} van in de volgende stijlen: ${styles}`)
+        agent.add(`Welke stijl zou je willen hebben?`)
     } else {
         agent.add(`We verkopen helaas geen ${clothing}`)
     }
+    agent.setContext({ name: 'order', lifespan: 5, parameters: { clothing }});
 }
 
 function brands(agent) {
