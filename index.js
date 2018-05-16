@@ -25,6 +25,7 @@ server.post('/bot', (request, response) => {
     intentMap.set('Default Welcome Intent', welcome)
     intentMap.set('Default Fallback Intent', fallback)
     intentMap.set('Start Order', startOrder)
+    intentMap.set('Merken', brands)
     agent.handleRequest(intentMap)
 })
 
@@ -46,6 +47,17 @@ function startOrder(agent) {
     } else {
         agent.add(`We verkopen helaas geen ${clothing}`)
     }
+}
+
+function brands(agent) {
+    const brands = _.uniq([].concat(
+        ClothingDB.shirts, 
+        ClothingDB.hoodies, 
+        ClothingDB.shorts, 
+        ClothingDB.shoenen, 
+        ClothingDB.caps
+    ).map(item => item.brand)).join(", ")
+    agent.add(`Wij verkopen de volgende mekren: ${brands}`)
 }
 
 server.listen(port, () => {
