@@ -66,10 +66,6 @@ function brands(agent) {
     agent.add(`Wij verkopen de volgende mekren: ${brands}`)
 }
 
-server.listen(port, () => {
-    console.log("listening on port " + port)
-})
-
 function orderStyle(agent) {
     const style = agent.parameters['Style'].toLowerCase()
     const context = agent.getContext("order")
@@ -81,7 +77,12 @@ function orderStyle(agent) {
             .join(", ")
 
         agent.add(`Wij verkopen ${style} ${clothing} van de volgende merken: ${brands}`)
+        agent.setContext({ name: 'order', lifespan: 5, parameters: { clothing, style }});
     } else {
         agent.add('Wat voor soort kleding zou je willen hebben?')
     }
 }
+
+server.listen(port, () => {
+    console.log("listening on port " + port)
+})
