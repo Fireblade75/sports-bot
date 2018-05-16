@@ -26,6 +26,7 @@ server.post('/bot', (request, response) => {
     intentMap.set('Default Fallback Intent', fallback)
     intentMap.set('Start Order', startOrder)
     intentMap.set('Merken', brands)
+    intentMap.set('Order Style', orderStyle)
     agent.handleRequest(intentMap)
 })
 
@@ -65,3 +66,14 @@ function brands(agent) {
 server.listen(port, () => {
     console.log("listening on port " + port)
 })
+
+function orderStyle(agent) {
+    const style = agent.parameters['Style'].toLowerCase()
+    const context = agent.getContext("order")
+    const brands = ClothingDB[context.clothing]
+        .filter(item => item.style === style)
+        .map(item => item.brand)
+        .join(", ")
+
+    agent.add(`Wij verkopen ${style} ${clothing} van de volgende merken: ${brands}`)
+}
