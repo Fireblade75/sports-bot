@@ -44,8 +44,11 @@ function startOrder(agent) {
     const itemList = ClothingDB[clothing]
     if(itemList) {
         const styles = _.uniq(itemList.map((item) => item.style)).join(", ")
-        agent.add(`We hebben ${clothing} van in de volgende stijlen: ${styles}`)
-        agent.add(`Welke stijl zou je willen hebben?`)
+        agent.add(`
+            We hebben ${clothing} van in de volgende stijlen: ${styles}\n
+            Welke stijl zou je willen hebben?
+        `)
+        
     } else {
         agent.add(`We verkopen helaas geen ${clothing}`)
     }
