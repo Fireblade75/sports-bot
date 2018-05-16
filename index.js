@@ -43,9 +43,9 @@ function startOrder(agent) {
     const clothing = agent.parameters['Clothing'].toLowerCase()
     const itemList = ClothingDB[clothing]
     if(itemList) {
-        const styles = _.uniq(itemList.map((item) => item.style)).join(", ")
+        const styles = _.uniq(itemList.map((item) => item.style)).join(", ").toLowerCase()
         agent.add(`
-            We hebben ${clothing} van in de volgende stijlen: ${styles}\n
+            We hebben ${clothing} van in de volgende stijlen: ${styles}.\n
             Welke stijl zou je willen hebben?
         `)
         
@@ -73,10 +73,15 @@ server.listen(port, () => {
 function orderStyle(agent) {
     const style = agent.parameters['Style'].toLowerCase()
     const context = agent.getContext("order")
-    const brands = ClothingDB[context.clothing]
-        .filter(item => item.style === style)
-        .map(item => item.brand)
-        .join(", ")
+    const clothing = context.parameters.clothing
+    if(clothing) {
+        const brands = ClothingDB[clothing]
+            .filter(item => item.style === style)
+            .map(item => item.brand)
+            .join(", ")
 
-    agent.add(`Wij verkopen ${style} ${clothing} van de volgende merken: ${brands}`)
+        agent.add(`Wij verkopen ${style} ${clothing} van de volgende merken: ${brands}`)
+    } else {
+        agent.add('Wat voor soort kleding zou je willen hebben?')
+    }
 }
