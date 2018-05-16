@@ -55,6 +55,13 @@ module.exports = {
             price: 40.99,
             color: "Rood",
             style: "Sport"
+        },
+        {
+            id: 1109,
+            brand: "Blue Horse",
+            price: 79.99,
+            color: "Wit",
+            style: "Sport"
         }
     ],
     "shirts": [
@@ -122,6 +129,27 @@ module.exports = {
             price: 49.99,
             color: "Blauw",
             style: "Sport"
+        },
+        {
+            id: 3115,
+            brand: "Blue Horse",
+            price: 29.99,
+            color: "Blauw",
+            style: "Swimwear"
+        },
+        {
+            id: 3116,
+            brand: "Blue Horse",
+            price: 29.99,
+            color: "Wit",
+            style: "Swimwear"
+        },
+        {
+            id: 3115,
+            brand: "City Light",
+            price: 39.99,
+            color: "Zwart",
+            style: "Minimalistisch"
         }
     ],
     "caps": [
@@ -131,6 +159,13 @@ module.exports = {
             price: 19.99,
             color: "Zwart",
             style: "Casual"
+        },
+        {
+            id: 3116,
+            brand: "Island Rock",
+            price: 19.99,
+            color: "Rood",
+            style: "Minimalistisch"
         }
     ],
     "hoodies": [
@@ -161,6 +196,20 @@ module.exports = {
             price: 49.99,
             color: "Rood",
             style: "Street"
+        },
+        {
+            id: 4109,
+            brand: "Blue Dragon",
+            price: 179.99,
+            color: "Blauw",
+            style: "Minimalistisch"
+        },
+        {
+            id: 4110,
+            brand: "Blue Dragon",
+            price: 149.99,
+            color: "Rood",
+            style: "Minimalistisch"
         }
     ]
 }
